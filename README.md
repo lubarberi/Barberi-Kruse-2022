@@ -1,5 +1,5 @@
 # Barberi-Kruse-2022
-This repo provides the code used in the article "Localized states in active fluids", Barberi &amp; Kruse, arXiv:2209.02581.
+This repo provides the code used in the article [_"Localized states in active fluids"_](https://arxiv.org/abs/2209.02581), Barberi &amp; Kruse, arXiv:2209.02581.
 
 - stabilitydiagram.jl >> numerical calculation of the Turing- and Hopf- instability lines of the homogeneous steady state, illustrated in the Supplementary Material.
 
