@@ -24,8 +24,8 @@ function CalculateRHS!(Pars, Nx, Fields, ∂xFields, ∂xΠ, v, A, ∂xFieldsv, 
         ∂xFieldsv[:,:] .= ∂xFieldsv[:,:] ./ Δx
         # Calculate right hand sides of dynamical eqns
         RHS[1,2:Nx-1] .= @. ∂xFieldsv[1,2:Nx-1] + Pars["Dc"] * ∂xxFields[1,2:Nx-1] - Pars["Kd"] * Fields[1,2:Nx-1] + Pars["A"] * Fields[2,2:Nx-1]
-        RHS[2,2:Nx-1] .= @. ∂xFieldsv[2,2:Nx-1] + Pars["Da"] * ∂xxFields[2,2:Nx-1] - Pars["Ωd"] * Fields[1,2:Nx-1] * Fields[2,2:Nx-1] + Pars["Ω0"] * Fields[3,2:Nx-1] * (1 + Pars["Ω"] * Fields[2,2:Nx-1]^2)
-        RHS[3,2:Nx-1] .= @. ∂xFieldsv[3,2:Nx-1] +              ∂xxFields[3,2:Nx-1] + Pars["Ωd"] * Fields[1,2:Nx-1] * Fields[2,2:Nx-1] - Pars["Ω0"] * Fields[3,2:Nx-1] * (1 + Pars["Ω"] * Fields[2,2:Nx-1]^2)
+        RHS[2,2:Nx-1] .= @. ∂xFieldsv[2,2:Nx-1] + Pars["Da"] * ∂xxFields[2,2:Nx-1] - (Pars["Ωd0"] + Pars["Ωd"] * Fields[1,2:Nx-1]) * Fields[2,2:Nx-1] + Pars["Ω0"] * Fields[3,2:Nx-1] * (1 + Pars["Ω"] * Fields[2,2:Nx-1]^2)
+        RHS[3,2:Nx-1] .= @. ∂xFieldsv[3,2:Nx-1] +              ∂xxFields[3,2:Nx-1] + (Pars["Ωd0"] + Pars["Ωd"] * Fields[1,2:Nx-1]) * Fields[2,2:Nx-1] - Pars["Ω0"] * Fields[3,2:Nx-1] * (1 + Pars["Ω"] * Fields[2,2:Nx-1]^2)
         # No-flux boundary conditions imply ∂xFields[:,1] = ∂xFields[:,Nx] = 0.
         # This is enforced as Fields[:,1] = Fields[:,2] and Fields[:,Nx] = Fields[:,Nx-1],
         # through the choice of RHS below 

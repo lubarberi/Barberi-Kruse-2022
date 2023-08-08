@@ -13,8 +13,8 @@ function CalculateRHS!(Pars, v, Fields, ∂xx, ∂xFieldsv, σ, RHS, k, P, Pinv,
     end
     # Calculate right hand sides
     RHS[1,:] .= @. - ∂xFieldsv[1,:] + Pars["Dc"] * ∂xx[1,:] - Pars["Kd"] * Fields[1,:] + Pars["A"] * Fields[2,:]
-    RHS[2,:] .= @. - ∂xFieldsv[2,:] + Pars["Da"] * ∂xx[2,:] - Pars["Ωd"] * Fields[1,:] * Fields[2,:] + Pars["Ω0"] * Fields[3,:] * (1 + Pars["Ω"] * Fields[2,:]^2)
-    RHS[3,:] .= @. - ∂xFieldsv[3,:] + ∂xx[3,:]              + Pars["Ωd"] * Fields[1,:] * Fields[2,:] - Pars["Ω0"] * Fields[3,:] * (1 + Pars["Ω"] * Fields[2,:]^2)
+    RHS[2,:] .= @. - ∂xFieldsv[2,:] + Pars["Da"] * ∂xx[2,:] - (Pars["Ωd0"] + Pars["Ωd"] * Fields[1,:]) * Fields[2,:] + Pars["Ω0"] * Fields[3,:] * (1 + Pars["Ω"] * Fields[2,:]^2)
+    RHS[3,:] .= @. - ∂xFieldsv[3,:] + ∂xx[3,:]              + (Pars["Ωd0"] + Pars["Ωd"] * Fields[1,:]) * Fields[2,:] - Pars["Ω0"] * Fields[3,:] * (1 + Pars["Ω"] * Fields[2,:]^2)
 end
 
 function EulerForward!(Δt, Pars, v, Fields, ∂xx, ∂xFieldsv, σ, RHS, k, P, Pinv, Factor1stDer, Factor2ndDer)
