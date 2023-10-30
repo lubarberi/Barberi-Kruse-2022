@@ -2,7 +2,7 @@
 # Space grid
 L  = 10*π                 # System size
 Nx = 4096                 # Number of grid nodes
-Δx = L / (Nx-1)           # Grid spacing
+Δx = L / Nx               # Grid spacing
 x  = [-L/2 + i*Δx for i = 0:Nx-1]   # Space vector
 
 # Model parameters (saved in a dictionary)
