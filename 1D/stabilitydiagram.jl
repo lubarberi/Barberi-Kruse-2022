@@ -42,7 +42,7 @@ StabilityDiagram = zeros(Int64, NPar1 + 1, NPar2 + 1)
 # Initialize real axis (prerequisite to initialize reciprocal axis)
 L = 10*π
 Nx = 512
-Δx = L / (Nx - 1)
+Δx = L / Nx
 # Initialize reciprocal axis
 Kmax = π / Δx
 Kmin = 2*π / L
