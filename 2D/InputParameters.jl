@@ -3,8 +3,8 @@
 L  = 10*π                                            # System size
 N  = 512                                             # Number of grid node
 Nx = N; Ny = N
-Δx = L / (N-1)                                       # Grid spacing
-Δy = L / (N-1)
+Δx = L / N                                           # Grid spacing
+Δy = L / N
 x  = CuArray{Float64}([-L/2 + i*Δx for i = 0:N-1])   # Space vector
 y  = CuArray{Float64}([-L/2 + i*Δy for i = 0:N-1])   # Space vector
 # Initialize reciprocal space grid
